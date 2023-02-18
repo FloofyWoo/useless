@@ -1,7 +1,7 @@
 local GetAsset = getcustomasset or getsynasset
 
 local lp = game.Players.LocalPlayer.Name
-local e = game.Workspace[""..lp..""]:WaitForChild(cat); 
+local e = game.Workspace[""..lp..""]:WaitForChild("Maxwell"); 
 local on = false
 
 e.Activated:Connect(function() --Tool activation function
