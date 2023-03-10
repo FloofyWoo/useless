@@ -21,7 +21,7 @@ local Handle = Tool:WaitForChild('Handle')
 
 local FireSound = Handle:WaitForChild('Fire')
 local ReloadSound = Handle:WaitForChild('Reload')
-local HitFadeSound = script:WaitForChild('HitFade')
+local HitFadeSound = Tool:WaitForChild('HitFade')
 
 local PointLight = Handle:WaitForChild('PointLight')
 
