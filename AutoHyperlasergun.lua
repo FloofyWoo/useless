@@ -1,11 +1,12 @@
 local lplr = game.Players.LocalPlayer.Name
 
+
 -----------------
 --| Constants |--
 -----------------
 
 local SHOT_SPEED = 100
-local SHOT_TIME = 1
+local SHOT_TIME = .1
 
 local NOZZLE_OFFSET = Vector3.new(0, 0.4, -1.1)
 
@@ -16,7 +17,7 @@ local NOZZLE_OFFSET = Vector3.new(0, 0.4, -1.1)
 local PlayersService = Game:GetService('Players')
 local DebrisService = Game:GetService('Debris')
 
-local Tool = game.Workspace[""..lplr..""]:WaitForChild("Auto laser")
+local Tool = game.Workspace[""..lplr..""]:WaitForChild("Automatic Hyperlaser")
 local Handle = Tool:WaitForChild('Handle')
 
 local FireSound = Handle:WaitForChild('Fire')
@@ -30,6 +31,7 @@ local Humanoid = nil
 local Player = nil
 
 local BaseShot = nil
+local MouseHeld=false
 
 -----------------
 --| Functions |--
@@ -171,37 +173,50 @@ local function OnEquipped()
 end
 
 local function OnActivated()
-	if Tool.Enabled and Humanoid.Health > 0 then
-		Tool.Enabled = false
+	MouseHeld=true
+	coroutine.resume(coroutine.create(function()
 
-		FireSound:Play()
+	while (MouseHeld==true and wait(SHOT_TIME)) do
+		if Humanoid.Health > 0 then
+			coroutine.resume(coroutine.create(function()
+			Tool.Enabled = false
 
-		local handleCFrame = Handle.CFrame
-		local firingPoint = handleCFrame.p + handleCFrame:vectorToWorldSpace(NOZZLE_OFFSET)
-		local shotCFrame = CFrame.new(firingPoint, Humanoid.TargetPoint)
+			FireSound:Play()
 
-		local laserShotClone = BaseShot:Clone()
-		laserShotClone.CFrame = shotCFrame + (shotCFrame.lookVector * (BaseShot.Size.Z / 2))
-		local bodyVelocity = Instance.new('BodyVelocity')
-		bodyVelocity.velocity = shotCFrame.lookVector * SHOT_SPEED
-		bodyVelocity.Parent = laserShotClone
-		laserShotClone.Touched:connect(function(otherPart)
-			OnTouched(laserShotClone, otherPart)
-		end)
-		DebrisService:AddItem(laserShotClone, SHOT_TIME)
-		laserShotClone.Parent = Tool
+			local handleCFrame = Handle.CFrame
+			local firingPoint = handleCFrame.p + handleCFrame:vectorToWorldSpace(NOZZLE_OFFSET)
+			local shotCFrame = CFrame.new(firingPoint, Humanoid.TargetPoint)
 
-		wait(0) -- FireSound length
+			local laserShotClone = BaseShot:Clone()
+			laserShotClone.CFrame = shotCFrame + (shotCFrame.lookVector * (BaseShot.Size.Z / 2))
+			local bodyVelocity = Instance.new('BodyVelocity')
+			bodyVelocity.velocity = shotCFrame.lookVector * SHOT_SPEED
+			bodyVelocity.Parent = laserShotClone
+			laserShotClone.Touched:connect(function(otherPart)
+				OnTouched(laserShotClone, otherPart)
+			end)
+			DebrisService:AddItem(laserShotClone, 5)
+			laserShotClone.Parent = Tool
 
-		ReloadSound:Play()
-		wait(0) -- ReloadSound length
+			wait(0.5) -- FireSound length
+				if MouseHeld==false then
+					ReloadSound:Play()
+					wait(0.75) -- ReloadSound length
+					end
 
-		Tool.Enabled = true
-	end
+			Tool.Enabled = true
+			end))
+		end
+		end
+		end))
 end
 
 local function OnUnequipped()
 	
+end
+
+local function onDeactivated()
+	MouseHeld=false
 end
 
 --------------------
@@ -221,3 +236,4 @@ HitFadeSound:Clone().Parent = BaseShot
 Tool.Equipped:connect(OnEquipped)
 Tool.Unequipped:connect(OnUnequipped)
 Tool.Activated:connect(OnActivated)
+Tool.Deactivated:connect(onDeactivated)
