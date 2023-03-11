@@ -5,7 +5,7 @@ local Humanoid
 local HumanoidRootPart
 
 local lplr = game.Players.LocalPlayer.Name
-Tool = game.Workspace:WaitForChild("ServerTeeter")
+Tool = game.Workspace[""..lplr..""]:WaitForChild("ServerYeeter")
 Handle = Tool:WaitForChild("Handle")
 
 ToolEquipped = false
