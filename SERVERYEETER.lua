@@ -18,7 +18,7 @@ function Activated()
 				if v:IsA("Part") or v:IsA("MeshPart") or v:IsA("UnionOperation") or v:IsA("WedgePart") then
 					v.Color = Color3.fromRGB(0,0,0)
 					v.Material = Enum.Material.CorrodedMetal
-					a = Instance.new('Explosion')
+					a = Instance.new('Explosion'):Clone()
 					a.BlastRadius = 10
 					a.BlastPressure = 50000
 
@@ -29,7 +29,7 @@ function Activated()
 					if v:IsA("Part") or v:IsA("MeshPart") or v:IsA("UnionOperation") or v:IsA("WedgePart") then
 						wait(0.1)
 						v.Anchored = false
-						a:Clone().Parent = v
+						a.Parent = v
 					end
 				end
 			end
