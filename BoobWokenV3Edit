@@ -1,6 +1,3 @@
-
-
-
 if not game:IsLoaded() then
 	game.Loaded:Wait()
 end
@@ -501,6 +498,23 @@ function CheckIfValidRigAndApply(Model,ApplyPhysics,...)
 				NewRig.T.RT.Bust.Pants.Transparency = 1
 				NewRig.T.RT.Bust.VisualBust.Transparency = 1
 				NewRig.T.RT.Bust.VisualBust.Are.Transparency = 1
+				NewRig.T.RT.Bust.VisualBust["Left Breast"]["Left Breast"].Transparency = 1
+				NewRig.T.RT.Bust.VisualBust["Right Breast"]["Right Breast"].Transparency = 1
+				NewRig.T.RT.Bust.VisualBust["Left Breast"].Nipples.Transparency = 1
+				NewRig.T.RT.Bust.VisualBust["Right Breast"].Nipples.Transparency = 1
+				NewRig.T.RT.Bust.VisualBust["Left Breast"].Areola.Decal.Transparency = 1
+				NewRig.T.RT.Bust.VisualBust["Right Breast"].Areola.Decal.Transparency = 1
+			else
+				NewRig.T.RT.Bust.Shirt.Transparency = 0
+				NewRig.T.RT.Bust.Pants.Transparency = 0
+				NewRig.T.RT.Bust.VisualBust.Transparency = 0
+				NewRig.T.RT.Bust.VisualBust.Are.Transparency = 0
+				NewRig.T.RT.Bust.VisualBust["Left Breast"]["Left Breast"].Transparency = 1
+				NewRig.T.RT.Bust.VisualBust["Right Breast"]["Right Breast"].Transparency = 1
+				NewRig.T.RT.Bust.VisualBust["Left Breast"].Nipples.Transparency = 1
+				NewRig.T.RT.Bust.VisualBust["Right Breast"].Nipples.Transparency = 1
+				NewRig.T.RT.Bust.VisualBust["Left Breast"].Areola.Decal.Transparency = 1
+				NewRig.T.RT.Bust.VisualBust["Right Breast"].Areola.Decal.Transparency = 1
 			end
 
 			if not ConfigData.ShowCrotch and NewRig.T.RT:FindFirstChild("Groin") then
@@ -645,6 +659,7 @@ ConfigGui.CharacterFrame.Characters.ButtButton.Toggle.MouseButton1Click:Connect(
 				v.T.RT.Butt["Right Cheek"].Shirt.Transparency = 0
 				v.T.RT.Butt["Left Cheek"].Pants.Transparency = 0
 				v.T.RT.Butt["Right Cheek"].Pants.Transparency = 0
+				
 			end)
 		end	
 	else 
@@ -674,6 +689,12 @@ ConfigGui.CharacterFrame.Characters.ChestButton.Toggle.MouseButton1Click:Connect
 					v.T.RT.Bust.Pants.Transparency = 0
 					v.T.RT.Bust.VisualBust.Transparency = 0
 					v.T.RT.Bust.VisualBust.Are.Transparency = 0
+					v.T.RT.Bust.VisualBust["Left Breast"]["Left Breast"].Transparency = 1
+					v.T.RT.Bust.VisualBust["Right Breast"]["Right Breast"].Transparency = 1
+					v.T.RT.Bust.VisualBust["Left Breast"].Nipples.Transparency = 1
+					v.T.RT.Bust.VisualBust["Right Breast"].Nipples.Transparency = 1
+					v.T.RT.Bust.VisualBust["Left Breast"].Areola.Decal.Transparency = 1
+					v.T.RT.Bust.VisualBust["Right Breast"].Areola.Decal.Transparency = 1
 				end
 			end)
 		end
@@ -908,6 +929,15 @@ ConfigGui.CharacterFrame.Clothes.ShirtOff.Toggle.MouseButton1Click:Connect (func
 	tits.Bust.Pants.Transparency = 1
 	tits.Shirt.Transparency = 1
 	tits.Pants.Transparency = 1
+	tits.Bust.VisualBust.Transparency = 1
+	tits.Bust.VisualBust.Are.Transparency = 1
+	tits.Bust.VisualBust["Left Breast"]["Left Breast"].Transparency = 0
+	tits.Bust.VisualBust["Right Breast"]["Right Breast"].Transparency = 0
+	tits.Bust.VisualBust["Left Breast"].Nipples.Transparency = 0
+	tits.Bust.VisualBust["Right Breast"].Nipples.Transparency = 0
+	tits.Bust.VisualBust["Left Breast"].Areola.Decal.Transparency = 0
+	tits.Bust.VisualBust["Right Breast"].Areola.Decal.Transparency = 0
+	
 	game.workspace[""..ppllrr..""].Shirt.ShirtTemplate = 0
 end)
 
@@ -920,6 +950,14 @@ ConfigGui.CharacterFrame.Clothes.ShirtOn.Toggle.MouseButton1Click:Connect (funct
 	tits.Bust.Pants.Transparency = 0
 	tits.Shirt.Transparency = 0
 	tits.Pants.Transparency = 0
+	tits.Bust.VisualBust.Transparency = 0
+	tits.Bust.VisualBust.Are.Transparency = 0
+	tits.Bust.VisualBust["Left Breast"]["Left Breast"].Transparency = 1
+	tits.Bust.VisualBust["Right Breast"]["Right Breast"].Transparency = 1
+	tits.Bust.VisualBust["Left Breast"].Nipples.Transparency = 1
+	tits.Bust.VisualBust["Right Breast"].Nipples.Transparency = 1
+	tits.Bust.VisualBust["Left Breast"].Areola.Decal.Transparency = 1
+	tits.Bust.VisualBust["Right Breast"].Areola.Decal.Transparency = 1
 	game.workspace[""..ppllrr..""].Shirt.ShirtTemplate = sh.ShirtTemplate
 end)
 
@@ -982,14 +1020,17 @@ end)
 local GetAsset = getcustomasset or getsynasset
 
 local imgs = {
-	"sex1.png",
-	"sex2.png",
-	"sex3.png",
-	"sex4.png",
-	"sex5.png",
+	"sex1.jpg",
+	"sex2.jpg",
+	"sex3.jpg",
+	"sex4.jpg",
+	"sex5.jpg",
 	"sex6.png",
 	"sex7.png",
 	"sex8.png",
+	"sex9.jpg",
+	"sex10.jpg",
+	"sex11.jpg",
 	"sex12.png",
 	"sex14.png",
 	"sex15.png",
